@@ -1,0 +1,28 @@
+﻿@if (Parent.ActivePage == this)
+{
+    @TabContentFragment
+}
+
+@code {
+    [CascadingParameter(Name = "TabSet")]
+    private TabSetComp Parent { get; set; }
+
+    [Parameter]
+    public RenderFragment TabHeaderOptionsFragment { get; set; }
+
+    [Parameter]
+    public RenderFragment TabContentFragment { get; set; }
+
+    [Parameter]
+    public string Text { get; set; }
+    public bool IsActive { get; set; } = false;
+
+    protected override void OnInitialized()
+    {
+        if (Parent == null)
+            throw new ArgumentNullException(nameof(Parent), "TabPage must exist within a TabSet");
+        base.OnInitialized();
+        Parent.AddPage(this);
+    }
+
+}

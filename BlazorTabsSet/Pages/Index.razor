@@ -1,0 +1,33 @@
+﻿@page "/"
+ 
+ <TabSetComp>
+     <TabHeadersFragment Context="tab">         
+        <TabHeaderComp TabPage="tab"/>
+     </TabHeadersFragment>
+     <TabsFragment>
+         <TabPageComp Text="Tab 1">
+             <TabHeaderOptionsFragment>
+                 <TabHeaderOptionsComp Text="1" />
+             </TabHeaderOptionsFragment>
+             <TabContentFragment>
+                 <h1>The first tab</h1>
+             </TabContentFragment>
+         </TabPageComp>
+         <TabPageComp Text="Tab 2">
+             <TabHeaderOptionsFragment>
+                 <TabHeaderOptionsComp Text="2" />
+             </TabHeaderOptionsFragment>
+             <TabContentFragment>
+                 <h1>The second tab</h1>
+             </TabContentFragment>
+         </TabPageComp>
+         <TabPageComp Text="Tab 3">
+             <TabHeaderOptionsFragment>
+                 <TabHeaderOptionsComp Text="3" />
+             </TabHeaderOptionsFragment>
+             <TabContentFragment>
+                 <h1>The third tab</h1>
+             </TabContentFragment>
+         </TabPageComp>
+     </TabsFragment>
+ </TabSetComp>

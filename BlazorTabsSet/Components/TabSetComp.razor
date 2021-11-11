@@ -1,0 +1,41 @@
+﻿<CascadingValue Value="this" Name="TabSet">
+    <div class="btn-group" role="group">
+        @foreach (TabPageComp tabPage in Pages)
+        {
+            @if (TabHeadersFragment != null)
+            {
+                @TabHeadersFragment(tabPage)
+            }
+            else
+            {
+                @tabPage.Text
+            }
+        }
+    </div>
+    @TabsFragment
+</CascadingValue>
+
+@code {
+    [Parameter]
+    public RenderFragment TabsFragment { get; set; }
+
+    [Parameter]
+    public RenderFragment<TabPageComp> TabHeadersFragment { get; set; }
+
+    private TabPageComp _activePage { get; set; }
+    public List<TabPageComp> Pages { get; set; } = new List<TabPageComp>();
+    public TabPageComp ActivePage => _activePage;
+    internal void AddPage(TabPageComp tabPage)
+    {
+        Pages.Add(tabPage);
+        if (Pages.Count == 1)
+            _activePage = tabPage;
+        StateHasChanged();
+    }
+
+    public void ActivatePage(TabPageComp tabPage)
+    {
+        _activePage = tabPage;
+        StateHasChanged();
+    }
+}

@@ -1,0 +1,16 @@
+﻿
+<button type="button"
+        class="btn @(TabPage == TabSetComp.ActivePage ? "btn-primary" : "btn-secondary")"
+        @onclick=@( () => ActivatePage() )>
+    @TabPage.TabHeaderOptionsFragment
+</button>
+
+@code{
+    [Parameter] public TabPageComp TabPage { get; set; }
+    [CascadingParameter(Name = "TabSet")] public TabSetComp TabSetComp { get; set; }
+
+    private void ActivatePage()
+    {
+        TabSetComp.ActivatePage(TabPage);
+    }
+}

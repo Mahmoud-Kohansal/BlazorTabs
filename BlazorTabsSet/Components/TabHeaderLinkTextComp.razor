@@ -1,6 +1,24 @@
-﻿<i class="@(TabPage.HeaderOptions.IconClass)"></i>
-@TabPage.HeaderOptions.Title
+﻿@typeparam TOptions
+
+<i class="@_iconClass"></i>
+@_title
 
 @code {
-    [Parameter] public TabPageComp TabPage { get; set; }
+    [Parameter] public TabPageComp<TOptions> TabPage { get; set; }
+    public string _title { get; set; }
+    public string _iconClass { get; set; }
+    protected override void OnInitialized()
+    {
+        base.OnInitialized();
+        switch (TabPage.HeaderOptions)
+        {
+            case TabHeaderOptions options:
+                _title = options.Title;
+                _iconClass = options.IconClass;
+                break;
+
+            default:
+                throw new InvalidCastException($"{nameof(TabPage.HeaderOptions)} is not appropriate type {typeof(TabHeaderOptions)}");                
+        }        
+    }
 }

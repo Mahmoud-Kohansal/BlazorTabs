@@ -1,8 +1,10 @@
-﻿<CascadingValue Value="this" Name="TabSet">
+﻿@typeparam TOptions
+
+<CascadingValue Value="this" Name="TabSet">
     <nav>
         <div class="container">
             <div class="nav nav-tabs" id="nav-tab" role="tablist">
-                @foreach (TabPageComp tabPage in Pages)
+                @foreach (TabPageComp<TOptions> tabPage in Pages)
                 {
                     @TabHeadersFragment(tabPage)
                 }
@@ -22,12 +24,12 @@
     public RenderFragment TabsFragment { get; set; }
 
     [Parameter]
-    public RenderFragment<TabPageComp> TabHeadersFragment { get; set; }
+    public RenderFragment<TabPageComp<TOptions>> TabHeadersFragment { get; set; }
 
-    private TabPageComp _activePage { get; set; }
-    public List<TabPageComp> Pages { get; set; } = new List<TabPageComp>();
-    public TabPageComp ActivePage => _activePage;
-    internal void AddPage(TabPageComp tabPage)
+    private TabPageComp<TOptions> _activePage { get; set; }
+    public List<TabPageComp<TOptions>> Pages { get; set; } = new List<TabPageComp<TOptions>>();
+    public TabPageComp<TOptions> ActivePage => _activePage;
+    internal void AddPage(TabPageComp<TOptions> tabPage)
     {
         Pages.Add(tabPage);
         if (Pages.Count == 1)
@@ -35,13 +37,13 @@
         StateHasChanged();
     }
 
-    public void ActivatePage(TabPageComp tabPage)
+    public void ActivatePage(TabPageComp<TOptions> tabPage)
     {
         _activePage = tabPage;
         StateHasChanged();
     }
     public int NewPageId()
     {
-        return (Pages.Count)+1;
+        return (Pages.Count) + 1;
     }
 }

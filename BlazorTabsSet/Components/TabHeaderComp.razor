@@ -1,11 +1,13 @@
-﻿<a class="nav-item nav-link @(TabPage == TabSetComp.ActivePage ? "active" : "")" id="@TabPage.AriaLabel"
+﻿@typeparam TOptions
+
+<a class="nav-item nav-link @(TabPage == TabSetComp.ActivePage ? "active" : "")" id="@TabPage.AriaLabel"
    data-toggle="tab" href="#@(TabPage.TabId)" role="tab" aria-controls="@TabPage.TabId" aria-selected="@(TabPage == TabSetComp.ActivePage ? true : false)">   
     @ChildContent
 </a>
 
 @code{
-    [Parameter] public TabPageComp TabPage { get; set; }
-    [CascadingParameter(Name = "TabSet")] public TabSetComp TabSetComp { get; set; }
+    [Parameter] public TabPageComp<TOptions> TabPage { get; set; }
+    [CascadingParameter(Name = "TabSet")] public TabSetComp<TOptions> TabSetComp { get; set; }
     [Parameter] public RenderFragment ChildContent { get; set; }
     private void ActivatePage()
     {

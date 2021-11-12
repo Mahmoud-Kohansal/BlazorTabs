@@ -1,16 +1,18 @@
-﻿<div class="tab-pane fade @(Parent.ActivePage == this?" active show":"")" id="@TabId" role="tabpanel" aria-labelledby="@AriaLabel">
+﻿@typeparam TOptions
+
+<div class="tab-pane fade @(Parent.ActivePage == this?" active show":"")" id="@TabId" role="tabpanel" aria-labelledby="@AriaLabel">
     @ChildContent
 </div>
 
 @code {
     [CascadingParameter(Name = "TabSet")]
-    private TabSetComp Parent { get; set; }
+    private TabSetComp<TOptions> Parent { get; set; }
 
     [Parameter]
     public RenderFragment ChildContent { get; set; }
 
     public bool IsActive { get; set; } = false;
-    [Parameter] public TabHeaderOptions HeaderOptions { get; set; }
+    [Parameter] public TOptions HeaderOptions { get; set; }
 
     public string TabId { get; set; }
     public string AriaLabel { get; set; }

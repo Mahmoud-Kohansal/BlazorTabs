@@ -1,22 +1,22 @@
 ﻿@*1- Tab Container Division*@
 <div class="address-page-tabs-holder">
-    <TabSetComp>
+    <TabSetComp TOptions="TabHeaderOptions">
         <TabHeadersFragment Context="tab">          
-            <TabHeaderComp TabPage="tab">
+            <TabHeaderComp TOptions="TabHeaderOptions" TabPage="tab">
                 @*2- Start of Customize Header Section *@
-                <TabHeaderLinkTextComp TabPage="tab" />
+                <TabHeaderLinkTextComp TOptions="TabHeaderOptions" TabPage="tab" />
                 @*End of Customize Header Section *@
             </TabHeaderComp>             
     </TabHeadersFragment>        
         <TabsFragment>
             @*3- Add TabPages Here*@
-            <TabPageComp HeaderOptions="firstPageTabHeaderOptions">
+            <TabPageComp TOptions="TabHeaderOptions" HeaderOptions="firstPageTabHeaderOptions">
                 <h2>Transaction tab contents</h2>
             </TabPageComp>
-            <TabPageComp HeaderOptions="secondPageTabHeaderOptions">
+            <TabPageComp TOptions="TabHeaderOptions" HeaderOptions="secondPageTabHeaderOptions">
                 <h2>Tokens tab contents</h2>
             </TabPageComp>
-            <TabPageComp HeaderOptions="thirdPageTabHeaderOptions">
+            <TabPageComp TOptions="TabHeaderOptions" HeaderOptions="thirdPageTabHeaderOptions">
                 <h2>API developer tab contents</h2>
             </TabPageComp>
             @*3- Add TabPages Here*@
@@ -25,8 +25,7 @@
 </div>
 
 @code {
-    //4-TabHeaderOptions field customizable correspond to TabHeaderLinkTextComp
-    // Id, and href is mandatory
+    //4-TabHeaderOptions as TOption
     private TabHeaderOptions firstPageTabHeaderOptions = new()
     {       
         IconClass = "fa fa-list",

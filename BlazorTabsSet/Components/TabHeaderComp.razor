@@ -1,14 +1,12 @@
-﻿
-<button type="button"
-        class="btn @(TabPage == TabSetComp.ActivePage ? "btn-primary" : "btn-secondary")"
-        @onclick=@( () => ActivatePage() )>
-    @TabPage.TabHeaderOptionsFragment
-</button>
+﻿<a class="nav-item nav-link @(TabPage == TabSetComp.ActivePage ? "active" : "")" id="@TabPage.HeaderOptions.Id"
+   data-toggle="tab" href="#@(TabPage.HeaderOptions.Href)" role="tab" aria-controls="@TabPage.HeaderOptions.Href" aria-selected="@(TabPage == TabSetComp.ActivePage ? true : false)">   
+    @ChildContent
+</a>
 
 @code{
     [Parameter] public TabPageComp TabPage { get; set; }
     [CascadingParameter(Name = "TabSet")] public TabSetComp TabSetComp { get; set; }
-
+    [Parameter] public RenderFragment ChildContent { get; set; }
     private void ActivatePage()
     {
         TabSetComp.ActivatePage(TabPage);

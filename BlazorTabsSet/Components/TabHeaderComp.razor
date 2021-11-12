@@ -1,5 +1,5 @@
-﻿<a class="nav-item nav-link @(TabPage == TabSetComp.ActivePage ? "active" : "")" id="@TabPage.HeaderOptions.Id"
-   data-toggle="tab" href="#@(TabPage.HeaderOptions.Href)" role="tab" aria-controls="@TabPage.HeaderOptions.Href" aria-selected="@(TabPage == TabSetComp.ActivePage ? true : false)">   
+﻿<a class="nav-item nav-link @(TabPage == TabSetComp.ActivePage ? "active" : "")" id="@TabPage.AriaLabel"
+   data-toggle="tab" href="#@(TabPage.TabId)" role="tab" aria-controls="@TabPage.TabId" aria-selected="@(TabPage == TabSetComp.ActivePage ? true : false)">   
     @ChildContent
 </a>
 

@@ -1,22 +1,16 @@
-﻿@if (Parent.ActivePage == this)
-{
-    @TabContentFragment
-}
+﻿<div class="tab-pane fade @(Parent.ActivePage == this?" active show":"")" id="@(HeaderOptions.Href)" role="tabpanel" aria-labelledby="@HeaderOptions.Id">
+    @ChildContent
+</div>
 
 @code {
     [CascadingParameter(Name = "TabSet")]
     private TabSetComp Parent { get; set; }
 
     [Parameter]
-    public RenderFragment TabHeaderOptionsFragment { get; set; }
+    public RenderFragment ChildContent { get; set; }
 
-    [Parameter]
-    public RenderFragment TabContentFragment { get; set; }
-
-    [Parameter]
-    public string Text { get; set; }
     public bool IsActive { get; set; } = false;
-
+    [Parameter] public TabHeaderOptions HeaderOptions { get; set; }
     protected override void OnInitialized()
     {
         if (Parent == null)

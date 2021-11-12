@@ -25,26 +25,20 @@
 </div>
 
 @code {
-    //4- TabHeaderOptions field customizable correspond to TabHeaderLinkTextComp
+    //4-TabHeaderOptions field customizable correspond to TabHeaderLinkTextComp
     // Id, and href is mandatory
     private TabHeaderOptions firstPageTabHeaderOptions = new()
-    {
-        Id = "nav-home-tab",
-        Href = "nav-home",
+    {       
         IconClass = "fa fa-list",
         Title = "Transaction"
     };
     private TabHeaderOptions secondPageTabHeaderOptions = new()
-    {
-        Id = "nav-profile-tab",
-        Href = "nav-profile",
+    {       
         IconClass = "fa fa-database",
         Title = "Tokens"
     };
     private TabHeaderOptions thirdPageTabHeaderOptions = new()
     {
-        Id = "nav-contact-tab",
-        Href = "nav-contact",
         IconClass = "fa fa-code",
         Title = "Developer API"
     };

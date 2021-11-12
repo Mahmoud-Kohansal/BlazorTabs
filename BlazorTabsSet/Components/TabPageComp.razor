@@ -1,4 +1,4 @@
-﻿<div class="tab-pane fade @(Parent.ActivePage == this?" active show":"")" id="@(HeaderOptions.Href)" role="tabpanel" aria-labelledby="@HeaderOptions.Id">
+﻿<div class="tab-pane fade @(Parent.ActivePage == this?" active show":"")" id="@TabId" role="tabpanel" aria-labelledby="@AriaLabel">
     @ChildContent
 </div>
 
@@ -11,11 +11,16 @@
 
     public bool IsActive { get; set; } = false;
     [Parameter] public TabHeaderOptions HeaderOptions { get; set; }
+
+    public string TabId { get; set; }
+    public string AriaLabel { get; set; }
     protected override void OnInitialized()
     {
         if (Parent == null)
             throw new ArgumentNullException(nameof(Parent), "TabPage must exist within a TabSet");
         base.OnInitialized();
+        TabId = "tab-pane-no-" + Parent.NewPageId();
+        AriaLabel = "tab-pane-no-" + Parent.NewPageId() + "-tab";
         Parent.AddPage(this);
     }
 

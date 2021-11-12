@@ -40,4 +40,8 @@
         _activePage = tabPage;
         StateHasChanged();
     }
+    public int NewPageId()
+    {
+        return (Pages.Count)+1;
+    }
 }
